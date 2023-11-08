@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Welcome To your dashboard
+
+    <button onclick="logout()">Log Out</button>
+
+    <script>
+
+        function logout() {
+            // sessionStorage.setItem("token", data.token);
+            //     sessionStorage.setItem("full-name", data.userDetails.fullName);
+            //     sessionStorage.setItem("username", data.userDetails.username);
+
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("full-name");
+            sessionStorage.removeItem("username");
+            location.assign("/login.html");
+        }
+
+        function checkIfLoggedIn() {
+            console.log(sessionStorage.getItem("token"));
+            if(!sessionStorage.getItem("token")) {
+                location.assign("/login.html");
+            }
+        }
+
+        checkIfLoggedIn();
+
+    </script>
+
+</body>
+</html>

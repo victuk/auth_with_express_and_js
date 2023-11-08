@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="addObserver1()">Add func 1 to observer</button>
+    <button onclick="addObserver2()">Add func 2 to observer</button>
+    <button onclick="addObserver3()">Add func 3 to observer</button>
+    <button onclick="addObserver4()">Add func 4 to observer</button>
+
+    <br>
+    <br>
+
+    <button onclick="removeObserver1()">Remove func 1 from observer</button>
+    <button onclick="removeObserver2()">Remove func 2 from observer</button>
+    <button onclick="removeObserver3()">Remove func 3 from observer</button>
+    <button onclick="removeObserver4()">Remove func 4 from observer</button>
+
+    <br>
+    <br>
+
+    <button onclick="notifyEveryObserver()">Notify</button>
+    
+    <br>
+    <br>
+    
+    <button onclick="clearObservers()">Clear Observers</button>
+
+
+    <script>
+        class Observables {
+            constructor() {
+                this.observables = []
+            }
+
+            subscribe(func) {
+                this.observables.push(func);
+            }
+
+            unsubscribe(func) {
+                this.observables = this.observables.filter(observer => observer != func);
+            }
+
+            notify(data) {
+                if(this.observables.length == 0) {
+                    console.log("No Observer");
+                } else {
+                    this.observables.forEach(observer => observer(data));
+                }
+            }
+
+            clearObservers() {
+                this.observables = [];
+            }
+        
+        }
+
+        const ultimateObservable = new Observables();
+
+
+        function addObserver1() {
+            ultimateObservable.subscribe(observer1);
+        }
+        function addObserver2() {
+            ultimateObservable.subscribe(observer2);
+        }
+        function addObserver3() {
+            ultimateObservable.subscribe(observer3);
+        }
+        function addObserver4() {
+            ultimateObservable.subscribe(observer4);
+        }
+
+
+        function observer1(data) {
+            console.log("Obsever 1 receives data:", data);
+        }
+
+        function observer2(data) {
+            console.log("Obsever 2 receives data:", data);
+        }
+
+        function observer3(data) {
+            console.log("Obsever 3 receives data:", data);
+        }
+
+        function observer4(data) {
+            console.log("Obsever 4 receives data:", data);
+        }
+
+
+        function removeObserver1() {
+            ultimateObservable.unsubscribe(observer1);
+        }
+        function removeObserver2() {
+            ultimateObservable.unsubscribe(observer2);
+        }
+        function removeObserver3() {
+            ultimateObservable.unsubscribe(observer3);
+        }
+        function removeObserver4() {
+            ultimateObservable.unsubscribe(observer4);
+        }
+
+        function notifyEveryObserver() {
+            ultimateObservable.notify("Notification that you will like");
+        }
+
+        function clearObservers() {
+            ultimateObservable.clearObservers();
+        }
+
+    </script>
+</body>
+</html>
